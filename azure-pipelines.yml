@@ -20,16 +20,15 @@ steps:
     SonarCloud: 'SonarCloud'
     organization: 'mcanog'
     scannerMode: 'CLI'
-    configMode: 'manual'
-    cliProjectKey: 'mcanog.azure-integration-nodejs'
-    cliProjectName: 'Azure integration SonarCloud NodeJS'
-    cliSources: '.'
+    configMode: 'file'
+
 - task: SonarCloudAnalyze@1
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '300'
 - script: |
     npm install
+    npm test
     npm run build
   displayName: 'npm install and build'
 
