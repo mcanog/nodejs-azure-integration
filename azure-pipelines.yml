@@ -14,22 +14,22 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
-- script: 
+- script: | 
+    npm install
     npm test
+  displayName: 'npm install and test'
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'SonarCloud'
     organization: 'mcanog'
     scannerMode: 'CLI'
     configMode: 'file'
-
 - task: SonarCloudAnalyze@1
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '300'
 
-- script: |
-    npm install
+- script:
     npm run build
-  displayName: 'npm install and build'
+  displayName: 'npm build'
 
